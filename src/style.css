@@ -1,0 +1,36 @@
+body {
+  background: #333;
+  margin: 1em;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.7em;
+  margin-top: 1.5em;
+}
+
+.menu {
+  padding: 3rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 0.5em;
+  display: block;
+  outline: 2px solid #fff;
+  outline-offset: -10px;
+}
+
+.gallery {
+  columns: 5 320px;
+  column-gap: 0.5em;
+}
