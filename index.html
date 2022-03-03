@@ -4,23 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Galeria</title>
   </head>
   <body>
     <h1>Gallery</h1>
     <div class="menu">
-      <input type="text" />
-      <button>Agregar</button>
-      <input type="radio" name="type" id="type1" />
-      <label for="type1">Tipo 1</label>
-      <input type="radio" name="type" id="type2" />
-      <label for="type2">Tipo 2</label>
-      <input type="radio" name="type" id="type3" />
-      <label for="type3">Tipo 3</label>
+      <div class="box">
+        <input
+          id="input_url"
+          type="text"
+          placeholder="Ingrese url de la imagen"
+        />
+        <button id="btn_url">Agregar</button>
+      </div>
+      <div id="radio-group">
+        <input type="radio" name="type" id="type1" value="gallery1" checked />
+        <label for="type1">Tipo 1</label>
+        <input type="radio" name="type" id="type2" value="gallery2" />
+        <label for="type2">Tipo 2</label>
+        <input type="radio" name="type" id="type3" value="gallery3" />
+        <label for="type3">Tipo 3</label>
+        <input type="radio" name="type" id="type4" value="empty" />
+        <label for="type4">Sin estilos</label>
+      </div>
     </div>
-    <div class="gallery"></div>
-    <script src="./src/components.js"></script>
-    <script src="./src/main.js"></script>
+    <div id="gallery" class="gallery1"></div>
+    <script src="./scripts/components.js"></script>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>
