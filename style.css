@@ -1,0 +1,162 @@
+body {
+  background: #333;
+  margin: 1em;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.7em;
+  margin-top: 1.5em;
+}
+
+.menu {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu > div {
+  margin: 1.5em;
+}
+
+.box {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+input,
+#btn_url {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: 0.5s; 
+}
+
+input[type='text'] {
+  background: #fff;
+  width: 60%;
+  height: 50px;
+  border: none;
+  outline: none;
+  padding: 0 25px;
+  border-radius: 25px 0 0 25px;
+}
+
+#btn_url {
+  position: relative;
+  left: -5px;
+  border-radius: 0 25px 25px 0;
+  width: 30%;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  background: #ffc107;
+  color: #fff;
+}
+
+#btn_url:hover {
+  background: #ff5722;
+}
+
+#radio-group {
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 3em;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+label {
+  padding: 18px 34px;
+  font-size: 14px;
+  color: #fff;
+  background: #009578;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+label:hover{
+  opacity: 0.65;
+}
+
+label:not(:last-of-type) {
+  border-right: 1px solid #006b56;
+}
+
+input[type='radio']:checked + label {
+  background: #006b56;
+}
+
+/* --------------------------------------------- */
+.gallery1 img {
+  max-width: 100%;
+  margin-bottom: 0.5em;
+  display: block;
+  outline: 2px solid #fff;
+  outline-offset: -10px;
+}
+
+.gallery1 {
+  columns: 5 320px;
+  column-gap: 0.5em;
+}
+
+.gallery1 img:hover {
+  cursor: pointer;
+  opacity: 0.1;
+}
+
+/* --------------------------------------------- */
+
+.gallery2 {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.gallery2.col-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.gallery2.col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery2.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gallery2.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gallery2 img {
+  width: 100%;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+/* --------------------------------------------- */
+.gallery3{
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 100px 2vw;
+}
+img{
+  width: 100%;
+}
