@@ -1,13 +1,17 @@
 const contenedor = document.querySelector('#gallery');
-
+let tipoGaleria = 'gallery1';
 let urls = [
+  'https://images.unsplash.com/photo-1645661319387-3e61ec8205b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIwfGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1646112918482-2763d6e12320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1646152159606-2b5aca677290?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
-  'https://images.unsplash.com/photo-1646145752399-98b6c2f2af0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1646143612209-a06a538b8c7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1646006304108-50b55c79631a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1638913974023-cef988e81629?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1646145752399-98b6c2f2af0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
   'https://images.unsplash.com/photo-1646130705727-7682a50aadb7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1637746583204-e7abbcffb68e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1646086347324-8fef219aebcc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
+  'https://images.unsplash.com/photo-1645930916050-523c86d40078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE1fGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
 ];
 
 function agregarElemento() {
@@ -15,13 +19,13 @@ function agregarElemento() {
   if (url != '') {
     urls.push(url);
     document.querySelector('#input_url').value = '';
+    contenedor.innerHTML = '';
     loagPage();
   }
 }
 
 function cambiarTam() {
   if (contenedor.className.includes('gallery2')) {
-    console.log('cambiarTam');
     let classCol = 'col-4';
     if (window.innerWidth < 600) {
       classCol = 'col-1';
@@ -44,7 +48,9 @@ function init() {
   radios.forEach(element => {
     element.addEventListener('click', function (event) {
       if (event.target.matches("input[type='radio']")) {
-        loagPage();
+        // loagPage();
+        tipoGaleria = event.target.value;
+        console.log(document.querySelectorAll('imagen-element')[0]);
         contenedor.classList.remove(
           'gallery1',
           'gallery2',
@@ -52,7 +58,8 @@ function init() {
           'col-2',
           'col-3',
           'col-4',
-          'gallery3'
+          'gallery3',
+          'empty'
         );
         contenedor.classList.add(event.target.value);
         if (event.target.value == 'gallery2') {
@@ -74,14 +81,24 @@ function init() {
             document.querySelectorAll('imagen-element'),
             numberOfCols
           );
+        } else if (event.target.value == 'gallery3') {
+          generateMasonryGrid(4, document.querySelectorAll('imagen-element'));
+        } else if (
+          event.target.value == 'gallery1' ||
+          event.target.value == 'empty'
+        ) {
+          contenedor.innerHTML = '';
+          loagPage();
         }
       }
     });
   });
 }
-
 const masonryLayout = (containerElement, itemsEle, cols) => {
+  containerElement.innerHTML = '';
+
   containerElement.classList.add('gallery2', `col-${cols}`);
+  console.log(itemsEle[0]);
   let columnsEle = [];
   for (let i = 1; i <= cols; i++) {
     let column = document.createElement('div');
@@ -91,22 +108,63 @@ const masonryLayout = (containerElement, itemsEle, cols) => {
   }
   for (let m = 0; m < Math.ceil(itemsEle.length / cols); m++) {
     for (let n = 0; n < cols; n++) {
-      if (itemsEle[m * cols + n] != undefined)
-        columnsEle[n].appendChild(itemsEle[m * cols + n]);
+      console.log(columnsEle[n]);
+      console.log(itemsEle[m * cols + n]);
+      const newElem = document.createElement('imagen-element');
+      newElem.url = urls[Math.ceil(Math.random() * 100) % urls.length];
+      columnsEle[n].appendChild(newElem);
     }
   }
 };
 
 function loagPage() {
-  let contenido = '';
   for (let i = 0; i < 20; i++) {
-    contenido += `<imagen-element url="${
-      urls[i % urls.length]
-    }"></imagen-element>`;
+    const newElem = document.createElement('imagen-element');
+    newElem.url = urls[i % urls.length];
+    contenedor.appendChild(newElem);
   }
-  contenedor.innerHTML = contenido;
+}
+function generateMasonryGrid(columns, posts) {
+  contenedor.innerHTML = '';
+
+  let columnWrappers = {};
+
+  for (let i = 0; i < columns; i++) {
+    columnWrappers[`column${i}`] = [];
+  }
+
+  for (let i = 0; i < posts.length; i++) {
+    const column = i % columns;
+    columnWrappers[`column${column}`].push(posts[i]);
+  }
+
+  for (let i = 0; i < columns; i++) {
+    let columnPosts = columnWrappers[`column${i}`];
+    let div = document.createElement('div');
+    div.classList.add('column');
+
+    columnPosts.forEach(post => {
+      const newElem = document.createElement('imagen-element');
+      newElem.url = urls[Math.ceil(Math.random() * 100) % urls.length];
+
+      div.appendChild(newElem);
+    });
+    contenedor.appendChild(div);
+  }
 }
 
 init();
 loagPage();
 window.onresize = cambiarTam;
+let waitChange = true;
+
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (waitChange && clientHeight + scrollTop >= scrollHeight - 500) {
+    waitChange = false;
+    if (tipoGaleria == 'gallery1') loagPage();
+  }
+  setTimeout(() => {
+    waitChange = true;
+  }, 2500);
+});
