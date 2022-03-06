@@ -101,6 +101,66 @@ input[type='radio']:checked + label {
   background: #006b56;
 }
 
+.go-top {
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  width: 4rem;
+  height: 4rem;
+  z-index: -1;
+}
+
+.go-top-btn {
+  width: 0;
+  height: 0;
+  background: #2071b2;
+  border-radius: 50%;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.go-top-btn > span {
+  position: absolute;
+  font-size: 1.7rem;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: white;
+  transition: 0.2s;
+}
+
+.show {
+  z-index: 10;
+}
+
+.show .go-top-btn {
+  animation: popup 0.3s ease-in-out;
+  width: 4rem;
+  height: 4rem;
+  z-index: 11;
+}
+
+.show span {
+  transform: translate(-50%, -50%) scale(1);
+}
+@keyframes popup {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 6rem;
+    height: 6rem;
+  }
+  100% {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
 /* --------------------------------------------- */
 
 .gallery1 img {
@@ -125,7 +185,7 @@ input[type='radio']:checked + label {
 
 .gallery2 {
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
 }
 
 .gallery2.col-1 {
@@ -147,17 +207,16 @@ input[type='radio']:checked + label {
 .gallery2 img {
   width: 100%;
   display: block;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* --------------------------------------------- */
 
 .gallery3 {
   position: relative;
-  width: 95%;
+  width: 100%;
   display: flex;
   gap: 15px;
-  padding: 30px 2vw;
 }
 
 .gallery3 img {

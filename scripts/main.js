@@ -93,28 +93,37 @@ function init() {
       }
     });
   });
+
+  document.querySelector('.go-top').addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
 }
+
+const agregarElem2 = (longitud, cols, columnsEle) => {
+  for (let m = 0; m < Math.ceil(longitud / cols); m++) {
+    for (let n = 0; n < cols; n++) {
+      const newElem = document.createElement('imagen-element');
+      newElem.url = urls[Math.ceil(Math.random() * 100) % urls.length];
+      columnsEle[n].appendChild(newElem);
+    }
+  }
+};
 const masonryLayout = (containerElement, itemsEle, cols) => {
   containerElement.innerHTML = '';
-
   containerElement.classList.add('gallery2', `col-${cols}`);
-  console.log(itemsEle[0]);
   let columnsEle = [];
+
   for (let i = 1; i <= cols; i++) {
     let column = document.createElement('div');
     column.classList.add('masonry-col', `c-${i}`);
     containerElement.appendChild(column);
     columnsEle.push(column);
   }
-  for (let m = 0; m < Math.ceil(itemsEle.length / cols); m++) {
-    for (let n = 0; n < cols; n++) {
-      console.log(columnsEle[n]);
-      console.log(itemsEle[m * cols + n]);
-      const newElem = document.createElement('imagen-element');
-      newElem.url = urls[Math.ceil(Math.random() * 100) % urls.length];
-      columnsEle[n].appendChild(newElem);
-    }
-  }
+
+  agregarElem2(itemsEle.length, cols, columnsEle);
 };
 
 function loagPage() {
@@ -153,8 +162,6 @@ function generateMasonryGrid(columns, posts) {
   }
 }
 
-init();
-loagPage();
 window.onresize = cambiarTam;
 let waitChange = true;
 
@@ -167,4 +174,13 @@ window.addEventListener('scroll', () => {
   setTimeout(() => {
     waitChange = true;
   }, 2500);
+
+  if (document.documentElement.scrollTop > 100) {
+    document.querySelector('.go-top').classList.add('show');
+  } else {
+    document.querySelector('.go-top').classList.remove('show');
+  }
 });
+
+init();
+loagPage();
